@@ -27,10 +27,17 @@ post '/visit' do
 		@title = "Thank you"
 		@color = params[:color]
 		
-		if @username == ''
-	       @error = 'Введите имя'
-            return erb :visit
-        end
+		hh = {:username => 'Введите имя', 
+			  :phone => 'Введите телефон',
+			  :datetime =>'Введите дату и время' }
+
+		hh.each do |key, value|
+
+			if params[key] == ''
+			@error = hh[key]
+			return erb :visit
+		    end
+		end
 
 
 		f = File.open './public/user.txt', 'a'
