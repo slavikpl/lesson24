@@ -27,6 +27,11 @@ post '/visit' do
 		@title = "Thank you"
 		@color = params[:color]
 		
+		if @username == ''
+	       @error = 'Введите имя'
+            return erb :visit
+        end
+
 
 		f = File.open './public/user.txt', 'a'
 	         f.write "User: #{@username}, Phone: #{@phone}, Date and time: #{@datetime}\n Сотрудник: #{@namemaster}\n Цвет волос: #{@color}\n\n"
